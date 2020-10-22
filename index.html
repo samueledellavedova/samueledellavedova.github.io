@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/index.css" type="text/css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" type="text/css" />
+    <title>Welcome to my Odd World</title>
+  </head>
+  <body onload="boot()">
+    <div class="overlay"></div>
+    <div class="overlay glitch"></div>
+
+    <div id="splash">
+      <div id="splashmessage"></div>
+    </div>
+    
+    <div id="desktop">
+      <div id="row">
+        <div class="icons">
+          <img src="assets/icons/recycle_bin_full.ico" />
+          <div class="name">Trash</div>
+        </div>
+
+        <div class="icons">
+          <img src="assets/icons/computer.ico" />
+          <div class="name">My Odd World</div>
+        </div>
+
+        <div class="icons">
+          <img src="assets/icons/msie1.ico" />
+          <div class="name">Internet</div>
+        </div>
+
+        <div class="icons discord">
+          <img src="assets/icons/discord.ico" style="filter: contrast(150%)" />
+          <div class="name">Talk w/ me</div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="startbar">
+      <div id="startbutton" class="button-off"><b>Start</b></div>
+      <div id="time">4:20 AM</div>
+    </div>
+
+    <div id="startmenu">
+      <div id="sidebar"></div>
+      <div id="headline"><b>Windows</b> 98</div>
+      <ul>
+        <li class="item">Help</li>
+        <li class="item">Logout</li>
+        <li class="item">Shutdown</li>
+      </ul>
+    </div>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery.overlaps.js"></script>
+    <script src="scripts/index.js"></script>
+  </body>
+</html>
