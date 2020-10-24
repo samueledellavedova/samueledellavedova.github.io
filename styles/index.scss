@@ -1,21 +1,5 @@
 /* Variables */
 
-/*$bg-color: #2b1165;
-$fg-color: #f54171;
-$bg-gradient: linear-gradient(
-  180deg,
-  $bg-color 0%,
-  rgba(26, 58, 130, 1) 37%,
-  rgba(171, 36, 177, 1) 69%,
-  $fg-color 100%
-);
-$fg-gradient: linear-gradient(
-  0deg,
-  $bg-color 0%,
-  rgba(26, 58, 130, 1) 37%,
-  rgba(171, 36, 177, 1) 69%,
-  $fg-color 100%
-);*/
 $windows-gray: #bdbebd;
 $windows-blue: #000084;
 $windows-cyan: #1084d0;
@@ -28,20 +12,19 @@ $border-dark: 2px solid black;
 /* Main */
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-
-  display: flex;
+  /*display: flex;
   align-items: center;
   justify-content: center;
 
   height: 100vh;
-  position: relative;
+  position: relative;*/
 
   overflow: hidden;
   user-select: none;
@@ -90,21 +73,25 @@ body {
   justify-content: center;
   overflow: hidden;
   z-index: 9000;
+  font-size: 12px;
 }
 
-#splashtext {
-  font-size: 14px;
-}
+/*#splashtext {
+
+}*/
 
 /* Desktop */
 
 #desktop {
   width: 100vw;
   height: 100vh;
-  background: url('../assets/backgrounds/sakuratree.gif') center;
-  background-repeat: no-repeat;
+  background: url('../assets/backgrounds/sakuratree.gif');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   overflow: hidden;
+  position: fixed; 
+  z-index: -999;
 }
 
 .row {
@@ -150,8 +137,9 @@ body {
 
 /* Start Bar */
 
-#startbar {
-  position: absolute;
+#dock {
+  position: fixed;
+  display: block;
   bottom: 0;
   left: 0;
   width: 100vw;
@@ -161,22 +149,19 @@ body {
   padding: 3px;
 }
 
-#time {
+#dock-time {
   float: right;
-  width: 95px;
-  height: 29px;
+  padding: 5px 15px 5px 35px;
   font-size: 14px;
-  text-align: right;
-  padding: 4px;
-  cursor: text;
   border-top: $border-medium;
   border-left: $border-medium;
   border-bottom: $border-light;
   border-right: $border-light;
-  background-image: url('../assets/icons/loudspeaker_muted.ico');
-  background-size: auto 75%;
-  background-position: 5% 50%;
+  background: url('../assets/icons/loudspeaker_muted.ico');
+  background-size: 20px;
   background-repeat: no-repeat;
+  background-position: 5px center;
+  cursor: text;
 }
 
 #startbutton {
@@ -269,5 +254,157 @@ body {
   }
 }
 
+.more {
+  position: relative; 
+  list-style: none;
+  &:after {
+    content: "►";
+    left: 65px;
+    position: relative;
+    float: right;
+  }
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+}
 
+.more:hover .dropdown-content {
+  display: block;
+  top: -2px;
+  left: 100%;
+  background-color: $windows-gray;
+  color: black;
+  list-style: none;
+  border-left: $border-light;
+  border-top: $border-light;
+  border-right: $border-medium;
+  border-bottom: $border-medium;
+  box-sizing: border-box;
+  min-width: 100%;
+}
+
+.dropdown-item {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 40px;
+  padding-right: 10px;
+  font-size: 13px;
+  background-size: auto 70%;
+  background-position: 5% 50%;
+  background-repeat: no-repeat;
+  white-space:nowrap;
+  &:hover {
+    color: white;
+    background-color: $windows-blue;
+  }
+}
+
+/* Window */
+
+.window {
+  width: 800px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  margin-top: 5px;
+  background-color: $windows-gray;
+  border-left: 1px solid white;
+  border-bottom: 1px solid black;
+  border-top: 1px solid white;
+  border-right: 1px solid black;
+  box-shadow: 2px 2px 10px 0px solid black;
+  display: block;
+}
+
+.window-inner {
+  border: 2px solid $windows-gray;
+  height: 100%;
+}
+
+.window-header {
+  background: linear-gradient(to right, $windows-blue, $windows-cyan);
+  font-size: 14px;
+  overflow: auto;
+}
+
+.window-header p {
+  color: white;
+  display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(100% - 105px);
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
+.window-icon {
+  width: 20px;
+  height: 20px;
+  background-color: $windows-gray;
+  float: right;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align: center;
+  margin-top: 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
+.minimise {
+  background-image: url('../assets/icons/minimise.png');
+  background-size: auto 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.maximise {
+  background-image: url('../assets/icons/maximise.png');
+  background-size: auto 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.close {
+  background-image: url('../assets/icons/close.png');
+  background-size: auto 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.window-content {
+  margin-top: 2px;
+  border: 2px solid grey;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+  height: calc(100% - 28px);
+}
+
+.program {
+  float: left;
+  display: block;
+  margin-left: 5px;
+  width: 200px;
+  height: 29px;
+  text-align: left;
+  padding: 4px;
+  padding-left: 30px;
+  background-color: $windows-gray;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  background-size: auto 70%;
+  background-position: 3px 50%;
+  background-repeat: no-repeat;
+}
+
+.window-header-icon {
+  height: 20px; 
+  margin-left: 3px;
+  margin-top: 3px;
+  display: inline-block; 
+}
