@@ -1,13 +1,13 @@
 /* Variables */
 
-$windows-gray: #bdbebd;
-$windows-blue: #000084;
-$windows-cyan: #1084d0;
-$windows-selector: #2C2C8E;
+$windows-gray: #DAACD5; // @default #bdbebd
+$windows-blue: #8E4585; // @default #000084
+$windows-cyan: #B473AC; // @default #1084d0
+$windows-selection: #2C2C8E; // @default #2C2C8E
 
-$border-light: 2px solid white;
-$border-medium: 2px solid gray;
-$border-dark: 2px solid black;
+$border-light: 2px solid #FFEFFD; // @default white
+$border-medium: 2px solid #B473AC; // @default gray
+$border-dark: 2px solid black; // @default black
 
 /* Main */
 
@@ -19,13 +19,6 @@ $border-dark: 2px solid black;
 }
 
 body {
-  /*display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100vh;
-  position: relative;*/
-
   overflow: hidden;
   user-select: none;
 }
@@ -48,13 +41,13 @@ body {
   pointer-events: none !important;
 }
 
-.glitch{
+.overlay-glitch {
   clip-path: polygon(0 0, 100% 0, 100% .5em, 0 .5em);
-  animation: glitch 10s linear infinite;
+  animation: overlay-glitch 10s linear infinite;
   transform: translatex(.1rem);
 }
 
-@keyframes glitch {
+@keyframes overlay-glitch {
   to {
     clip-path: polygon(0 calc(100% - .5em), 100% calc(100% - .5em), 0 100%, 0 100%);
   }
@@ -131,7 +124,7 @@ body {
 #selection {
   position: absolute;
   border: 1px dotted white;
-  background: $windows-selector;
+  background: $windows-selection;
   opacity: 0.6;
 }
 
@@ -157,11 +150,18 @@ body {
   border-left: $border-medium;
   border-bottom: $border-light;
   border-right: $border-light;
-  background: url('../assets/icons/loudspeaker_muted.ico');
+  background: url('../assets/icons/loudspeaker_rays.ico');
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 5px center;
-  cursor: text;
+  cursor: pointer;
+  transition: all ease 0.2s;
+  &.muted {
+    background: url('../assets/icons/loudspeaker_muted.ico');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 5px center;
+  }
 }
 
 #startbutton {
@@ -248,6 +248,7 @@ body {
   background-size: auto 80%;
   background-position: 5px 50%;
   background-repeat: no-repeat;
+  transition: all ease 0.3s;
   &:hover {
     background-color: $windows-blue;
     color: white;
@@ -295,6 +296,7 @@ body {
   background-position: 5% 50%;
   background-repeat: no-repeat;
   white-space:nowrap;
+  transition: all ease 0.3s;
   &:hover {
     color: white;
     background-color: $windows-blue;
@@ -304,8 +306,8 @@ body {
 /* Window */
 
 .window {
-  width: 800px;
-  height: 500px;
+  width: 47vw;
+  height: 53vh;
   top: 50%;
   left: 50%;
   margin-top: 5px;
@@ -332,7 +334,7 @@ body {
 .window-header p {
   color: white;
   display: inline;
-  vertical-align: middle;
+  vertical-align: super;
   overflow: hidden;
   white-space: nowrap;
   width: calc(100% - 105px);
@@ -407,4 +409,66 @@ body {
   margin-left: 3px;
   margin-top: 3px;
   display: inline-block; 
+}
+
+/* Notepad */
+
+#input-textarea, #custom-textarea {
+  resize: none;
+  height: 100vh;
+  padding: 7px;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+  }
+}
+
+#input-textarea {
+  width: 24.9vw;
+  float: left;
+}
+
+#custom-textarea {
+  width: 74.9vw;
+  float: right;
+}
+
+/* Internet Explorer */
+
+#error-503 {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  padding: 7px;
+}
+
+#error-503 p {
+  font-size: 14px;
+}
+
+/* Disable Mobile Devices */
+
+#mobile-msg {
+  display: none;
+}
+
+@media only screen and (max-device-width: 425px) {
+  #desktop, #dock {
+    display: none;
+  }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  #mobile-msg {
+    display: block;
+    font-size: 26px;
+  }
 }

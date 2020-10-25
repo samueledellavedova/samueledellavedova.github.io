@@ -6,12 +6,19 @@ function boot() {
   const message = 'Welcome to my Odd World...';
   const callback = () => setTimeout(() => $('#splash').fadeOut(1000), 500);
   
-  write('#splashmessage', message, 0, 105, callback)
+  if ($('#mobile-msg').is(':visible'))
+    write('#mobile-msg', 'I\'m sorry but mobile version is currently disabled :(', 0, 75)
+  else
+    write('#splashmessage', message, 0, 105, callback)
+
+  $('#bg-audio')
+    .prop('volume', 0.05)
+    //.trigger('play')
 }
 
 // Write Letter Per Letter Between Specified Interval
 
-function write(target, message, index, interval, callback) {   
+function write(target, message, index, interval, callback) {  
   if (index < message.length) {
     $(target).append(message[index++]);
     setTimeout(() => write(target, message, index, interval, callback), interval);
@@ -190,28 +197,43 @@ function notHoveringIcons() {
 
 $(document).ready(function() {
 
-  $('#startbutton').on('click', function() { // Start button click
+  $('#startbutton').on('click', function(e) { // Start button click
     $(this).toggleClass('button-on');
     $('#startmenu').toggle('slide', { direction: 'down' });
   });
 
-  $('#desktop').on('click', function() { // Click on desktop
+  $('#desktop').on('click', function(e) { // Click on desktop
     $('#startbutton').removeClass('button-on');
     $('#startmenu').hide('slide', { direction: 'down' });
 
     removeFocus();
   });
 
-  $('.icons').on('click', function() { // Single Icon Click
+  $('.icons').on('click', function(e) { // Single Icon Click
     $('.icons').removeClass('focus').removeClass('border');
     $(this).addClass('focus').addClass('border');
   });
+    
+  $('.icons.launch').on('dblclick', function(e) { // Double Click On Icons
+    const target = $(this).data('launch');
+    const title = $(this).data('title');
+    const img = $(this).data('icon');
+    const url = $(this).data('url');
 
-  $('#discord').on('dblclick', () => window.open('https://discord.gg/gsnJxAZ', '_blank'));
+    switch (target) {
+      case 'Discord':
+        window.open('https://discord.gg/gsnJxAZ', '_blank');
+        break;
+      default:
+        if (!isWindowOpen(target)) createProgram(target, title, img, url);
+        else openWindow(target);
+        break;
+    }
+  });
 
   $('#dock').on('click', '.program', function(e) { // Click on dock
     const id = $(this).attr('id');
-    const windowId = id.substring(10);
+    const windowId = id.substring(5);
     const window = $(`#${windowId}`);
 
     $(this).toggleClass('button-on');
@@ -223,7 +245,14 @@ $(document).ready(function() {
       if (window.css('z-index') == z) window.fadeOut(250);
       if (window.css('z-index') < z) openWindow(windowId);
 
-    } else openWindow(windowId);
+    } else {
+      openWindow(windowId);
+    }
+  });
+
+  $('#dock-time').on('click', function(e) { // Dock time click
+    $(this).toggleClass('muted');
+    $('.audio').prop('muted', !$('.audio').prop('muted'));
   });
 
   $(document.body)
@@ -329,7 +358,5 @@ $(document).ready(function() {
   $('.dropdown-item').each(function() { // Set icon for sub-items if supplied
     $(this).setIcon();
   });
-
-
 
 });
