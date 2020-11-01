@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../styles/index.css" type="text/css" />
+    <title>The Odd TV</title>
+  </head>
+  <body>
+
+    <!-- TV -->
+
+    <div id="tv">
+
+      <div id="tv-controller">
+        <div id="tv-freq-box"></div>
+        <div id="tv-freq-visualizer">
+          <canvas id="tv-freq-wave"></canvas>
+        </div>
+        <div id="tv-buttons">
+          <input type="button" id="increase-ch" class="tv-button" value="+">
+          <input type="button" id="decrease-ch" class="tv-button" value="-">
+        </div>
+        <div id="tv-switches">
+          <input type="radio" id="standard-sw" class="tv-switch" name="tv-sw" checked>
+            <label for="standard-sw">Standard</label><br>
+          <input type="radio" id="vibrant-sw" class="tv-switch" name="tv-sw">
+            <label for="vibrant-sw">Vibrant</label>
+        </div>
+      </div>
+
+      <div id="tv-mockup">
+        <div id="tv-glow" class="tv-screen"></div>
+        <div id="tv-video" class="tv-screen"><h1></h1></div>
+      </div>
+
+    </div>
+
+    <script src="../libs/jquery.js" type="text/javascript"></script>
+    <script src="../libs/jquery-ui.js" type="text/javascript"></script>
+    <script src="../scripts/tv.js" type="text/javascript"></script>
+  </body>
+</html>

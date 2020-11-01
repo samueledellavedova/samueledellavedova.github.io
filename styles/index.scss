@@ -7,7 +7,37 @@ $windows-selection: #2C2C8E; // @default #2C2C8E
 
 $border-light: 2px solid #FFEFFD; // @default white
 $border-medium: 2px solid #B473AC; // @default gray
-$border-dark: 2px solid black; // @default black
+$border-dark: 2px solid #361051; // @default black
+
+/* Mixin */
+
+@mixin off {
+  border-top: $border-light;
+  border-left: $border-light;
+  border-right: $border-dark;
+  border-bottom: $border-dark;
+}
+
+@mixin on {
+  border-top: $border-dark;
+  border-left: $border-dark;
+  border-right: $border-light;
+  border-bottom: $border-light;
+}
+
+@mixin medium-off {
+  border-left: $border-light;
+  border-top: $border-light;
+  border-right: $border-medium;
+  border-bottom: $border-medium;
+}
+
+@mixin medium-on {
+  border-top: $border-medium;
+  border-left: $border-medium;
+  border-bottom: $border-light;
+  border-right: $border-light;
+}
 
 /* Main */
 
@@ -90,6 +120,7 @@ body {
 .row {
   width: 100%;
   margin: 0 auto;
+  float: left;
 }
 
 .icons {
@@ -143,13 +174,10 @@ body {
 }
 
 #dock-time {
+  @include medium-on;
   float: right;
   padding: 5px 15px 5px 35px;
   font-size: 14px;
-  border-top: $border-medium;
-  border-left: $border-medium;
-  border-bottom: $border-light;
-  border-right: $border-light;
   background: url('../assets/icons/loudspeaker_rays.ico');
   background-size: 20px;
   background-repeat: no-repeat;
@@ -177,35 +205,27 @@ body {
   background-size: auto 90%;
   background-position: 5% 50%;
   background-repeat: no-repeat;
-  cursor: pointer;
 }
 
 .button-off {
-  border-top: $border-light;
-  border-left: $border-light;
-  border-right: $border-dark;
-  border-bottom: $border-dark;
+  @include off;
+  cursor: pointer;
 }
 
 .button-on {
-  border-top: $border-dark;
-  border-left: $border-dark;
-  border-right: $border-light;
-  border-bottom: $border-light;
+  @include on;
+  cursor: pointer;
 }
 
 /* Start Menu */
 
 #startmenu {
+  @include medium-off;
   position: absolute;
   bottom: 38px;
   left: 0;
   background-color: $windows-gray;
   z-index: 10;
-  border-left: $border-light;
-  border-top: $border-light;
-  border-right: $border-medium;
-  border-bottom: $border-medium;
   display: none;
   &.open {
     display: block;
@@ -329,17 +349,17 @@ body {
   background: linear-gradient(to right, $windows-blue, $windows-cyan);
   font-size: 14px;
   overflow: auto;
-}
 
-.window-header p {
-  color: white;
-  display: inline;
-  vertical-align: super;
-  overflow: hidden;
-  white-space: nowrap;
-  width: calc(100% - 105px);
-  padding-top: 3px;
-  padding-left: 3px;
+  p {
+    color: white;
+    display: inline;
+    vertical-align: super;
+    overflow: hidden;
+    white-space: nowrap;
+    width: calc(100% - 105px);
+    padding-top: 3px;
+    padding-left: 3px;
+  }
 }
 
 .window-icon {
@@ -362,6 +382,9 @@ body {
   background-size: auto 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  &:active {
+    @include on;
+  }
 }
 
 .maximise {
@@ -369,6 +392,9 @@ body {
   background-size: auto 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  &:active {
+    @include on;
+  }
 }
 
 .close {
@@ -376,6 +402,9 @@ body {
   background-size: auto 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  &:active {
+    @include on;
+  }
 }
 
 .window-content {
@@ -440,10 +469,197 @@ body {
   height: 100vh;
   background-color: white;
   padding: 7px;
+
+  p {
+    font-size: 14px;
+  }
 }
 
-#error-503 p {
-  font-size: 14px;
+/* My Odd World */
+
+#myoddworld {
+  width: 100vw;
+  height: 100vh;
+  display: table;
+  text-align: center;
+  background: url('../assets/others/eye_zoom.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  form {
+    vertical-align: middle;
+    display: table-cell;
+    
+    input {
+      width: 200px;
+      height: 25px;
+      margin: 5px;
+      padding: 2px;
+      padding-left: 3px;
+      padding-right: 3px;
+      background-color: $windows-gray;
+      &:focus {
+        outline: none;
+      }
+    }
+    
+    #username {
+      @include medium-on;
+      cursor: auto;
+      box-shadow: 0 5px 15px black;
+    }
+    
+    #password {
+      @include medium-on;
+      cursor: auto;
+      box-shadow: 0 5px 15px black;
+    }
+    
+    #submit {
+      @include off;
+      cursor: not-allowed;
+      box-shadow: 0 5px 15px black;
+      &:active {
+        @include on;
+      }
+    }
+  }
+}
+
+/* TV */
+
+#tv {
+  width: 100vw;
+  height: 100vh;
+  background-color: #383838;
+
+  #tv-mockup {
+    width: 80%;
+    height: 96%;
+    top: 2%;
+    left: 2%;
+    position: absolute;
+    background-color: transparent;
+    border-radius: 2rem;
+    border-top: 1rem solid #020202;
+    border-left: 1rem solid #080808;
+    border-bottom: 1rem solid #121212;
+    border-right: 1rem solid #080808;
+
+    .tv-screen {
+      width: 100%;
+      height: 100%;
+      display: block;
+      top: 0;
+      left: 0;
+      border-radius: 1rem;
+      box-shadow: inset 0 0 18rem black, inset 0 0 3rem black, 0 0 10rem black;
+    }
+
+    #tv-glow {
+      pointer-events: none;
+      position: fixed;
+      opacity: 0.15;
+      background: radial-gradient(
+        circle at center,
+      #1bd459 0%,
+      rgba(27, 212, 89, 0.88) 58%,
+      rgba(21, 235, 92, 0.27) 93%,
+      rgba(10, 23, 12, 0) 100%
+      );
+    }
+
+    #tv-video {
+      position: absolute;
+      background: url('../assets/others/noise.gif');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: #14fdce;
+      font-size: 1.75vw;
+      padding: 0.75rem 1rem;
+      text-shadow: 0rem 0.2rem 1rem #0c7b46;
+    }
+  }
+
+  #tv-controller {
+    width: 14%;
+    height: 88%;
+    top: 6%;
+    right: 2%;
+    position: absolute;
+
+    #tv-freq-box {
+      width: 100%;
+      height: 20%;
+      position: absolute;
+      border-radius: 25%;
+      border-top: 0.8vw solid #121212;
+      border-left: 0.8vw solid  #080808;
+      border-bottom: 0.8vw solid #020202;
+      border-right: 0.8vw solid #080808;
+      box-shadow: inset 0 0 9rem black, inset 0 0 1.5rem black, 0 0 5rem black;
+    }
+    
+    #tv-freq-visualizer {
+      width: 100%;
+      height: 20%;
+      border-radius: 2.5%;
+  
+      #tv-freq-wave {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    input {
+      &:focus {
+        outline: none;
+      }
+    }
+
+    #tv-buttons {
+      width: 100%;
+      height: 9%;
+      margin-top: 25%;
+
+      .tv-button {
+        width: 38%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: $windows-gray;
+      }
+
+      #increase-ch {
+        @include off;
+        float: left;
+        &:active {
+          @include on;
+        }
+      }
+
+      #decrease-ch {
+        @include off;
+        float: right;
+        &:active {
+          @include on;
+        }
+      }
+    }
+
+    #tv-switches {
+      display: none;
+      width: 100%;
+      height: 9%;
+      margin-top: 25%;
+      background-color: red;
+
+      .tv-switch {
+        
+      }
+    }
+  }
 }
 
 /* Disable Mobile Devices */

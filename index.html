@@ -3,7 +3,7 @@
   <head>
     <link rel="stylesheet" href="styles/index.css" type="text/css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" type="text/css" />
-    <title>Welcome to my Odd World</title>
+    <title>Welcome to My Odd World</title>
   </head>
   <body onload="boot()">
 
@@ -47,8 +47,8 @@
         </li>
         <li class="item more" data-icon="../assets/icons/pictures.ico">Photos
           <ul class="dropdown-content">
-            <li class="dropdown-item launch" data-launch="pepe" data-title="Rare Pepe.jpg" data-icon="../assets/icons/kodak_imaging_file.ico" data-url="http://penry.me/projects/windows98/rarepepe/">Rare Pepe.jpg</li>
-            <li class="dropdown-item launch" data-launch="dank" data-title="Requiem for a meme.gif" data-icon="../assets/icons/kodak_imaging_file.ico" data-url="http://penry.me/projects/windows98/requiem/">Requiem for a meme.gif</li>
+            <li class="dropdown-item launch" data-launch="pepe" data-title="kinda sus.jpg" data-icon="../assets/icons/kodak_imaging_file.ico" data-url="">kinda sus.jpg</li>
+            <li class="dropdown-item launch" data-launch="dank" data-title="idk.gif" data-icon="../assets/icons/kodak_imaging_file.ico" data-url="">idk.gif</li>
           </ul>
         </li>
         <li class="item more" data-icon="../assets/icons/cd_audio_cd_a.ico">Music
@@ -75,12 +75,12 @@
 
     <div id="desktop">
     
-      <div id="row">
+      <div class="row">
         <div class="icons">
           <img src="assets/icons/recycle_bin_full.ico" />
           <div class="name">Trash</div>
         </div>
-        <div class="icons">
+        <div class="icons launch" data-launch="MyOddWorld" data-title="My Odd World - Files" data-icon="assets/icons/computer.ico" data-url="pages/myoddworld.html">
           <img src="assets/icons/computer.ico" />
           <div class="name">My Odd World</div>
         </div>
@@ -98,11 +98,18 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="icons launch" data-launch="TV" data-title="The Odd TV" data-icon="assets/icons/network_television.ico" data-url="pages/tv.html">
+          <img src="assets/icons/network_television.ico" />
+          <div class="name">The Odd TV</div>
+        </div>
+      </div>
+
     </div>
 
-    <script src="scripts/jquery.js" type="text/javascript"></script>
-    <script src="scripts/jquery-ui.js" type="text/javascript"></script>
-    <script src="scripts/jquery.overlaps.js" type="text/javascript"></script>
+    <script src="libs/jquery.js" type="text/javascript"></script>
+    <script src="libs/jquery-ui.js" type="text/javascript"></script>
+    <script src="libs/jquery.overlaps.js" type="text/javascript"></script>
     <script src="scripts/index.js" type="text/javascript"></script>
   </body>
 </html>
