@@ -1,11 +1,11 @@
 const directory = '../assets/tv/';
-const channels = [];
+const channels = [ '0_rick_and_morty.gif', '1_the_midnight_gospel.gif', '2_paul_robertson_void.gif', '3_paul_robertson_lost.gif' ];
 let current = 0;
 
 // Load GIFs from TV channels folder
 
 function loadChannels() {
-  $.ajax({
+  /*$.ajax({
     url: directory,
     success: function(res) {
       $(res).find('a:contains(.gif)').each(function() { // load all gifs
@@ -13,7 +13,8 @@ function loadChannels() {
       });
       setChannel(current); // view the first channel
     }
-  });
+  });*/ // GET not working on GitHub Pages
+  setChannel(current);
 }
 
 // Play Specified Audio File
