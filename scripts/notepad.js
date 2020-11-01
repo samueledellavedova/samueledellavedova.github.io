@@ -18,24 +18,27 @@ const characters = {
 const input = $('#input-textarea');
 const custom = $('#custom-textarea');
 
-input.on('input', function(e) {
-  custom.val('');
-  let value = this.value.split('');
-  
-  setTimeout(function() {
-    Object.keys(characters).map((char) => {
-      for (var j = 0; j < value.length; j++) {
-        let i = value.indexOf(char);
+$(document).ready(function() {
 
-        if (i !== -1) {
-          value[i] = characters[char];
-          custom.val(value.join(''));
-        }
+  input.on('input', function(e) { // when someone starts typing inside input text-area
+    custom.val('');
+    let value = this.value.split('');
+    
+    setTimeout(function() {
+      Object.keys(characters).map((char) => {
+        for (var j = 0; j < value.length; j++) {
+          let i = value.indexOf(char);
 
-        if (value.indexOf('\n') !== -1) {
-          custom.val(value.join('').replace(/^\s+|\s+$/gm, ''));
+          if (i !== -1) {
+            value[i] = characters[char];
+            custom.val(value.join(''));
+          }
+
+          if (value.indexOf('\n') !== -1) {
+            custom.val(value.join('').replace(/^\s+|\s+$/gm, ''));
+          }
         }
-      }
+      });
     });
   });
 });
